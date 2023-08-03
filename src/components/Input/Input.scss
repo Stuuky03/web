@@ -1,0 +1,29 @@
+div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  input {
+    color: #040011;
+    border-radius: 6px;
+    outline: none;
+    border: 0;
+    background-color: #ffffff;
+    width: 100%;
+    align-self: center;
+    font-size: 1rem;
+    padding: 0.66rem 1rem;
+    &:not(:placeholder-shown) + label {
+      opacity: 0;
+    }
+  }
+
+  label{
+    color: rgba(98, 103, 108, 0.8);
+    font-size: 14px;
+    position: absolute;
+    left: 1rem;
+    cursor: text;
+  }
+}
