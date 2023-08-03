@@ -1,10 +1,11 @@
-div {
+.input-div {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
 
   input {
+    height: 40px;
     color: #040011;
     border-radius: 6px;
     outline: none;
@@ -13,7 +14,7 @@ div {
     width: 100%;
     align-self: center;
     font-size: 1rem;
-    padding: 0.66rem 1rem;
+    padding: 0 1rem;
     &:not(:placeholder-shown) + label {
       opacity: 0;
     }
@@ -26,4 +27,16 @@ div {
     left: 1rem;
     cursor: text;
   }
+
+  .error {
+    border-bottom: 2px solid red !important;
+  }
+
+}
+.error-span {
+  width: 100%;
+  display: flex;
+  color: red;
+  display: flex;
+  
 }
