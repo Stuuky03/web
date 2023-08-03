@@ -12,10 +12,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         return (
             <>
                 <div className='input-div'>
-                    <input id={id} placeholder=" " className={`${errorMessage && 'error'}`} ref={ref} {...props} />
-                    <label htmlFor={id} >{placeholder}</label>
+                    <div>
+                        <input id={id} placeholder=" " className={`${errorMessage && 'error'}`} ref={ref} {...props} />
+                        <label htmlFor={id} >{placeholder}</label>
+                    </div>
+                    {errorMessage && <span className='error-span'>{errorMessage}</span>}
                 </div>
-                {errorMessage && <span className='error-span'>{errorMessage}</span>}
             </>
         )
     }
