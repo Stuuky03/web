@@ -1,4 +1,4 @@
-import styles from './page.module.scss'
+import styles from './page.scss'
 import Input from '@/components/Input/Input'
 import Button from '@/components/Button/Button'
 
