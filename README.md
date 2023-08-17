@@ -1,5 +1,5 @@
 # Stuuky
-This is Stuuky. A learning plataform that is exclusive to ETEC students!!
+This is Stuuky. A learning plataform exclusive to ETEC students!!
 
 ## Technologies Used
 
