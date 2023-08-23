@@ -11,6 +11,7 @@ import Input from '@/components/Input/Input'
 import Button from '@/components/Button/Button'
 import linkArrowImage from '@/assets/icons/small-arrow.svg'
 import error from 'next/error'
+import { api } from '@/lib/api/axios'
 
 type FormData = {
   username: string,
@@ -28,14 +29,19 @@ const Form = () => {
     resolver: zodResolver(signUpUserFormSchema)
   })
 
-  const handleSignUp = (data: FormData) => {
+  const handleSignUp = async ({ username, email, password }: FormData) => {
     try {
-      console.log(data)
+      const response = await api.post("/user/create", {
+        username,
+        email,
+        password
+      })
+      console.log(`response: ${JSON.stringify(response.data)}`);
     } catch (err) {
       console.log(err)
     }
   }
-  console.log(errors.username)
+
   return (
     <form onSubmit={handleSubmit(handleSignUp)}>
       <div className='input-container'>
