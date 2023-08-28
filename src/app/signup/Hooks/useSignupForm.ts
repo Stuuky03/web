@@ -11,7 +11,7 @@ export const useSignupForm = () => {
   const { signUp } = useContext(AuthContext);
 
   const handleSignUp = async ({ username, email, password }: FormData) => {
-    const response = await signUp({ username, email, password })
+    await signUp({ username, email, password })
   }
 
   return { handleSignUp }

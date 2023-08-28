@@ -45,7 +45,7 @@ export function AuthProvider({ children }: AuthProvider) {
 
       console.log(response.data)
 
-      response.status == 201 ? console.log("Alert: Usuário cadastrado com sucesso") : console.log("Error: Erro ao cadastrar usuário")
+      console.log(`Retornou com sucesso ${response.status}`)
     } catch (err) {
       console.log(err)
     }
