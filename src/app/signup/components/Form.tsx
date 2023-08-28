@@ -2,16 +2,16 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 
 import './Form.scss'
-import { signUpUserFormSchema } from '../utils/signupSchema'
 import Input from '@/components/Input/Input'
 import Button from '@/components/Button/Button'
 import linkArrowImage from '@/assets/icons/small-arrow.svg'
-import error from 'next/error'
-import { api } from '@/lib/api/axios'
+
+import { useForm } from 'react-hook-form'
+import { signUpUserFormSchema } from '../utils/signupSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useSignupForm } from '../Hooks/useSignupForm'
 
 type FormData = {
   username: string,
@@ -29,18 +29,7 @@ const Form = () => {
     resolver: zodResolver(signUpUserFormSchema)
   })
 
-  const handleSignUp = async ({ username, email, password }: FormData) => {
-    try {
-      const response = await api.post("/user/create", {
-        username,
-        email,
-        password
-      })
-      console.log(`response: ${JSON.stringify(response.data)}`);
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const { handleSignUp } = useSignupForm()
 
   return (
     <form onSubmit={handleSubmit(handleSignUp)}>
