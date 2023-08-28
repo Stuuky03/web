@@ -51,6 +51,8 @@ const Form = () => {
           placeholder='Senha'
           id='password'
           errorMessage={errors.password?.message}
+          type='password'
+
         />
       </div>
 
