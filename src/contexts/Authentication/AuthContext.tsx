@@ -1,5 +1,6 @@
 "use client"
 import { api } from "@/lib/api/axios";
+import { AxiosResponse } from "axios";
 // import { Encrypt } from "@/lib/encrypt/bcrypt";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
@@ -18,7 +19,7 @@ type User = {
 type AuthContextData = {
   isAuthenticated: boolean,
   user: User,
-  signUp: (data: SignUpData) => Promise<void>
+  signUp: (data: SignUpData) => Promise<AxiosResponse>
 }
 
 
@@ -34,21 +35,15 @@ export function AuthProvider({ children }: AuthProvider) {
 
   async function signUp({ username, email, password }: SignUpData) {
     // const hashedPassword = await Encrypt.cryptPassword(password)
+    const response = await api.post("/user/create", {
+      username,
+      email,
+      password
+    })
 
-    try {
+    console.log(`Retornou com sucesso ${response.status}`)
 
-      const response = await api.post("/user/create", {
-        username,
-        email,
-        password
-      })
-
-      console.log(response.data)
-
-      console.log(`Retornou com sucesso ${response.status}`)
-    } catch (err) {
-      console.log(err)
-    }
+    return response
   }
 
   return (
