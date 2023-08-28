@@ -1,6 +1,7 @@
 import '../styles/globals.scss'
 import type { Metadata } from 'next'
 import { inter } from '@/utils/fonts/font'
+import { AuthProvider } from '@/contexts/Authentication/AuthContext'
 
 export const metadata: Metadata = {
   title: 'Stuuky',
@@ -14,7 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   )
 }

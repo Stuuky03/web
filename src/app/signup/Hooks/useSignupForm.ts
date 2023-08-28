@@ -1,7 +1,5 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { signUpUserFormSchema } from '../utils/signupSchema'
-import { api } from '@/lib/api/axios'
+import { AuthContext } from '@/contexts/Authentication/AuthContext'
+import { useContext } from 'react'
 
 type FormData = {
   username: string,
@@ -10,17 +8,10 @@ type FormData = {
 }
 
 export const useSignupForm = () => {
+  const { signUp } = useContext(AuthContext);
+
   const handleSignUp = async ({ username, email, password }: FormData) => {
-    try {
-      const response = await api.post("/user/create", {
-        username,
-        email,
-        password
-      })
-      console.log(`response: ${JSON.stringify(response.data)}`);
-    } catch (err) {
-      console.log(err)
-    }
+    const response = await signUp({ username, email, password })
   }
 
   return { handleSignUp }
