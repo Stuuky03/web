@@ -1,5 +1,8 @@
 import { AuthContext } from '@/contexts/Authentication/AuthContext'
-import { useContext, useEffect } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useContext } from 'react'
+import { useForm } from 'react-hook-form'
+import { signUpUserFormSchema } from '../utils/signupSchema'
 
 type FormData = {
   username: string,
@@ -9,19 +12,19 @@ type FormData = {
 
 export const useSignupForm = () => {
   const { signUp } = useContext(AuthContext);
+  const { register, setError, handleSubmit, formState } = useForm<FormData>({
+    mode: 'onSubmit',
+    resolver: zodResolver(signUpUserFormSchema)
+  })
 
   const handleSignUp = async ({ username, email, password }: FormData) => {
-    try {
-      const response = await signUp({ username, email, password })
-      return response.data
+    const response = await signUp({ username, email, password })
 
-      useEffect(() => {
-
-      }[])
-    } catch (err) {
-      console.log("Error: " + err)
-    }
-
+    setError("email", {
+      type: "manual",
+      message: response.data.error
+    })
   }
-  return { handleSignUp }
+
+  return { handleSignUp, formMethods: { register, handleSubmit, formState } }
 }

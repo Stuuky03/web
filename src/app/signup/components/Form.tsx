@@ -8,13 +8,7 @@ import Input from '@/components/Input/Input'
 import Button from '@/components/Button/Button'
 import linkArrowImage from '@/assets/icons/small-arrow.svg'
 
-import { useForm } from 'react-hook-form'
-import { signUpUserFormSchema } from '../utils/signupSchema'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useSignupForm } from '../Hooks/useSignupForm'
-import { AuthContext } from '@/contexts/Authentication/AuthContext'
-import { useContext, useEffect } from 'react'
-// import { useSignupForm } from '../Hooks/useSignupForm'
 
 type FormData = {
   username: string,
@@ -23,33 +17,16 @@ type FormData = {
 }
 
 const Form = () => {
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors }
-  } = useForm<FormData>({
-    mode: 'onSubmit',
-    resolver: zodResolver(signUpUserFormSchema)
-  })
+  const { handleSignUp, formMethods } = useSignupForm();
+  const { register, handleSubmit, formState } = formMethods;
+  const { errors } = formState;
 
-  const { signUp } = useContext(AuthContext);
-
-  const handleSignUp = async ({ username, email, password }: FormData) => {
-    try {
-      const response = await signUp({ username, email, password })
-
-      setError("email", {
-        type: "manual",
-        message: response.data.message
-      })
-    } catch (err) {
-      console.log("Error: " + err)
-    }
-  }
+  const onSubmit = async (userData: FormData) => {
+    await handleSignUp(userData);
+  };
 
   return (
-    <form onSubmit={handleSubmit(handleSignUp)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className='input-container'>
         <Input
           {...register("username")}

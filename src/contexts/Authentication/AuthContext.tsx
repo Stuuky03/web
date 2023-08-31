@@ -41,7 +41,6 @@ export function AuthProvider({ children }: AuthProvider) {
       password
     })
 
-    console.log(`Retornou com sucesso ${response.status}`)
 
     return response
   }
