@@ -1,6 +1,6 @@
-import Button from '@/components/Button/Button'
+import Button from '@/components/atoms/Button/Button'
 import styles from './page.module.scss'
-import Title from '@/components/Title/Title'
+import Title from '@/components/atoms/Title/Title'
 import Link from 'next/link'
 
 export default function homePage() {
@@ -11,10 +11,10 @@ export default function homePage() {
           <Title name='title' h1='Stuuky' />
         </div>
         <div>
-          <Link href="/signup">SIGN UP</Link>
+          <Link href="/auth/signup">SIGN UP</Link>
         </div>
         <div>
-          <Link href="/login">LOGIN</Link>
+          <Link href="/auth/login">LOGIN</Link>
         </div>
         <div>
           <Link href="/home">HOME</Link>

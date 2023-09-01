@@ -4,8 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import './SignUpForm.scss'
-import Input from '@/components/Input/Input'
-import Button from '@/components/Button/Button'
+import Input from '@/components/atoms/Input/Input'
+import Button from '@/components/atoms/Button/Button'
 import linkArrowImage from '@/assets/icons/small-arrow.svg'
 
 import { useHandleSignup } from '../Hooks/useHandleSignup'

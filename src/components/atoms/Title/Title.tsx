@@ -3,8 +3,8 @@ import './Title.scss';
 
 interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   h1?: string,
-  name: string 
-  }
+  name: string
+}
 
 const Title: FC<TitleProps> = ({ h1, name, ...props }) => {
   return (

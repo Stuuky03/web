@@ -1,8 +1,8 @@
 "use client"
 
 import './LoginForm.scss'
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
+import Button from "@/components/atoms/Button/Button";
+import Input from "@/components/atoms/Input/Input";
 import Link from "next/link";
 import Image from "next/image"
 import linkArrowImage from '@/assets/icons/small-arrow.svg'

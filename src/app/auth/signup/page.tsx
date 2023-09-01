@@ -2,8 +2,9 @@ import Image from 'next/image'
 
 import './style.scss'
 import SignUpForm from './components/SignUpForm'
-import SaturnPlanet from '@/components/Saturn/Saturn'
-import Planet from '@/components/Planet/Planet'
+import SaturnPlanet from '@/components/canvas/Saturn/Saturn'
+import Planet from '@/components/canvas/Planet/Planet'
+import Alert from "@/components/atoms/Alert/Alert"
 import { montserrat } from '@/utils/fonts/font'
 
 export default function signUp() {
@@ -17,6 +18,7 @@ export default function signUp() {
         </div>
         <SignUpForm />
       </div>
+      <Alert id="error-alert" message="Desculpe, não encontramos sua conta" />
     </main>
   )
 }
