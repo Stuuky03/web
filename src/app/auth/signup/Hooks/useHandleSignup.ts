@@ -2,19 +2,16 @@ import { AuthContext } from '@/contexts/Authentication/AuthContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { signUpUserFormSchema } from '../utils/signupSchema'
+import { signUpFormSchema } from '../utils/signupSchema'
+import { z } from 'zod'
 
-type FormData = {
-  username: string,
-  email: string,
-  password: string
-}
+type FormData = z.infer<typeof signUpFormSchema>
 
-export const useSignupForm = () => {
+export const useHandleSignup = () => {
   const { signUp } = useContext(AuthContext);
   const { register, setError, handleSubmit, formState } = useForm<FormData>({
     mode: 'onSubmit',
-    resolver: zodResolver(signUpUserFormSchema)
+    resolver: zodResolver(signUpFormSchema)
   })
 
   const handleSignUp = async ({ username, email, password }: FormData) => {

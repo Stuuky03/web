@@ -3,12 +3,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import './Form.scss'
+import './SignUpForm.scss'
 import Input from '@/components/Input/Input'
 import Button from '@/components/Button/Button'
 import linkArrowImage from '@/assets/icons/small-arrow.svg'
 
-import { useSignupForm } from '../Hooks/useSignupForm'
+import { useHandleSignup } from '../Hooks/useHandleSignup'
 
 type FormData = {
   username: string,
@@ -16,13 +16,14 @@ type FormData = {
   password: string
 }
 
-const Form = () => {
-  const { handleSignUp, formMethods } = useSignupForm();
+const SignUpForm = () => {
+  const { handleSignUp, formMethods } = useHandleSignup();
   const { register, handleSubmit, formState } = formMethods;
   const { errors } = formState;
 
   const onSubmit = async (userData: FormData) => {
-    await handleSignUp(userData);
+    console.log("Submitting form!!")
+    await handleSignUp(userData)
   };
 
   return (
@@ -30,7 +31,7 @@ const Form = () => {
       <div className='input-container'>
         <Input
           {...register("username")}
-          placeholder='Username'
+          placeholder='Nome de usuário'
           id='username'
           errorMessage={errors.username?.message}
         />
@@ -57,7 +58,7 @@ const Form = () => {
         <Button name='submit' value='Próximo' />
       </div>
       <h6 className='login-link'>Já é usuário?
-        <Link href="/login">Fazer Login
+        <Link href="/auth/login">Fazer Login
           <Image src={linkArrowImage} width={12} height={7} alt='Login Arrow' />
         </Link>
       </h6>
@@ -65,4 +66,4 @@ const Form = () => {
   )
 }
 
-export default Form;
+export default SignUpForm;

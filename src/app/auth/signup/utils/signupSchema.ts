@@ -1,11 +1,11 @@
 import { z } from 'zod'
 
-const signUpUserFormSchema = z.object({
+const signUpFormSchema = z.object({
 
   username: z.string()
     .nonempty('Digite o username')
-    .min(3, 'Username deve ter no mínimo 3 dígitos')
-    .max(32, 'Username deve ter até no máximo 32 dígitos')
+    .min(3, 'Nome de usuário deve ter no mínimo 3 dígitos')
+    .max(32, 'Nome de usuário deve ter até no máximo 32 dígitos')
     .trim(),
 
   email: z.string()
@@ -21,4 +21,4 @@ const signUpUserFormSchema = z.object({
 
 })
 
-export { signUpUserFormSchema }
+export { signUpFormSchema }
