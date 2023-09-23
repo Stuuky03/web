@@ -4,7 +4,7 @@ import './Input.scss'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     placeholder: string,
     id: string,
-    errorMessage: string | undefined,
+    errorMessage?: string | undefined,
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(

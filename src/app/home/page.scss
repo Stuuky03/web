@@ -1,48 +1,17 @@
-.body {
+header {
+  width: 100%;
+  margin: .5rem 0 2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  main {
-    width: 700px;
+  gap: 2.375rem;
+
+  .search-input-container {
+    width: 45%;
+  }
+  .icons-container {
     display: flex;
-    flex-direction: column;
     gap: 1rem;
-  }
-}
-
-.question {
-  display: flex;
-  gap: 1.5rem;
-  flex-direction: column;
-  background-color: #24293d;
-  padding: 1rem;
-  border-radius: 16px;
-
-  .question-header {
-    display: flex;
-    gap: .5rem;
-    span {
-      content: "";
-      display: block;
-      width: 24px;
-      height: 24px;
-      background-color: #bcc1d1;
-      border-radius: 50%;
-    }
-    .info {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    color: white;
-  }
-  .question-content {
-    color: white;
-    word-wrap: break-word
-  }
-  .question-button {
-    width: 200px;
-    align-self: flex-end;
+    align-items: center;
   }
 }
