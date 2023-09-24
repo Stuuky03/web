@@ -1,17 +1,51 @@
-header {
-  width: 100%;
-  margin: .5rem 0 2rem 0;
+main {
+  color: white;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2.375rem;
+  gap: 1.5rem;
+}
 
-  .search-input-container {
-    width: 45%;
-  }
-  .icons-container {
+.feed {
+  display: flex;
+  flex-direction: column;
+  width: 835px;
+}
+
+.left-aside {
+  width: 280px;
+
+  .make-your-question {
     display: flex;
-    gap: 1rem;
-    align-items: center;
+    flex-direction: column;
+    color: white;
+
+    h3 {
+      font-size: 1.375rem;
+      font-weight: 600;
+    }
+
+    h5 {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+
+    span {
+      height: 40px;
+      padding: 0 1rem;
+      margin-top: 0.625rem;
+      display: flex;
+      background-color: #2372E7;
+      border-radius: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+
+      p {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+    }
   }
 }

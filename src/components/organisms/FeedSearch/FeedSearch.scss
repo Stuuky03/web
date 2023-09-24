@@ -1,0 +1,64 @@
+.feed-search {
+  margin-top: 1.375rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(90deg, #246DED 0%, #0FF244 100%, #0FF244 100%);
+  padding: 3rem 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+
+  h5 {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .feed-search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin-top: 1rem;
+
+    input {
+      height: 40px;
+      color: #040011;
+      outline: none;
+      border: 0;
+      border-radius: 6px;
+      width: 100%;
+      align-self: center;
+      font-size: 1rem;
+      padding: 0 1rem;
+      &:not(:placeholder-shown) + label {
+        opacity: 0;
+      }
+    }
+    label{
+      color: rgba(98, 103, 108, 0.8);
+      font-size: 14px;
+      position: absolute;
+      left: 1rem;
+      cursor: text;
+    }
+    button {
+      background-color: #246DED;
+      border-radius: 3px;
+      padding: 7px 14px;
+      display: flex;
+      outline: none;
+      border: none;
+      color: white;
+      text-transform: uppercase;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: .25rem;
+    }
+  }
+}
