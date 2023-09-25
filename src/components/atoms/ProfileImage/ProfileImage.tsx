@@ -1,3 +1,5 @@
+import "./ProfileImage.scss"
+
 import Image from "next/image"
 import defaultUserIcon from "@/assets/icons/user-icon.svg"
 

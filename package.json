@@ -6,14 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "compile": "graphql-codegen -c ./src/lib/apollo/codegen.ts",
+    "watch": "graphql-codegen -w"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.4",
     "@hookform/resolvers": "^3.1.1",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
+    "graphql": "^16.8.1",
     "next": "13.4.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -21,6 +25,9 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@types/bcrypt": "^5.0.0",
     "@types/node": "^20.5.3",
     "@types/react": "^18.2.21",

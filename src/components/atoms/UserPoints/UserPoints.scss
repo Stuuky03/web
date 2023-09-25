@@ -1,0 +1,14 @@
+.points {
+  display: flex;
+  padding: 2px 2px 2px 6px;
+  background-color: #F3F4F4;
+  border-radius: 50px;
+  align-items: center;
+  gap: 0.375rem;
+
+  p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #3E84FF;
+  }
+}

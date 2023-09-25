@@ -1,5 +1,5 @@
 "use client"
-import { api } from "@/lib/api/axios";
+import { api } from "@/lib/apollo/axios";
 import { AxiosResponse } from "axios";
 import { createContext, ReactNode, useState } from "react";
 

@@ -1,7 +1,7 @@
 import '../styles/globals.scss'
 import type { Metadata } from 'next'
 import { inter } from '@/utils/fonts/font'
-import { AuthProvider } from '@/contexts/Authentication/AuthContext'
+import ApolloProvider from '@/lib/apollo/ApolloProvider'
 
 export const metadata: Metadata = {
   title: 'Stuuky',
@@ -14,12 +14,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
+    <ApolloProvider>
+      <html lang="pt-br">
+        <body className={inter.className}>
           {children}
-        </AuthProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ApolloProvider>
   )
 }
