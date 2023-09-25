@@ -6,8 +6,6 @@ import { useQuery } from '@apollo/client';
 import Question from "@/components/molecules/Question/Question"
 import { getAllQuestions } from "./graphql/feedQuery";
 
-
-
 const PostsFeed = () => {
   const { error, data } = useQuery(getAllQuestions)
 

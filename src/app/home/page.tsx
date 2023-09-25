@@ -1,9 +1,6 @@
 import './page.scss'
 
 import PageHeader from '@/components/organisms/PageHeader/PageHeader'
-import Image from 'next/image'
-
-import { montserrat } from '@/utils/fonts/font'
 
 import FeedSearch from '@/components/organisms/FeedSearch/FeedSearch'
 import FeedType from '@/components/atoms/FeedType/FeedType'

@@ -1,75 +1,26 @@
 "use client"
 import "./page.scss"
 
-import Question from "@/components/molecules/Question/Question";
-import { gql } from "@/utils/types/__generated__";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import backIcon from "@/assets/icons/back-icon.svg"
 import PageHeader from "@/components/organisms/PageHeader/PageHeader";
 import { montserrat } from "@/utils/fonts/font";
-
-const getQuestionById = gql(/* GraphQL */`
-  query QuestionById($questionId: String!) {
-    questionById(id: $questionId) {
-      id
-      title
-      content
-      createdAt
-      course {
-          name
-          description
-      }
-      tags {
-          name
-          description
-      }
-      student {
-          firstName
-          lastName
-          username
-      }
-      stuukes {
-        id
-        title
-        content
-        createdAt
-        course {
-            name
-            description
-        }
-        tags {
-            name
-            description
-        }
-        student {
-            firstName
-            lastName
-            username
-        }
-        references {
-            title
-            url
-        }
-      }
-    }
-}`)
+import { getQuestionById } from "./graphql/getQuestionById";
+import Post from "@/components/molecules/Post";
 
 type params = { params: { questionId: string } }
 export default function Page({ params: { questionId } }: params) {
-  const router = useRouter()
-  console.log(questionId)
 
   const { loading, data } = useQuery(getQuestionById, {
     variables: { questionId }
   })
 
-  if (loading) return null
+  if (loading || data == null || data.questionById == null) return null
 
-  const questionData = {
+  const { title, content, course, tags, createdAt, id, student: { firstName, lastName, username } } = {
     id: data.questionById.id,
     title: data.questionById.title,
     content: data.questionById.content,
@@ -99,15 +50,13 @@ export default function Page({ params: { questionId } }: params) {
           </div>
           <div className="main-content">
             <div className="question-container">
-              <Question
-                title={questionData.title}
-                content={questionData.content}
-                course={questionData.course.name}
-                tags={questionData.tags}
-                firstName={questionData.student.firstName}
-                lastName={questionData.student.lastName}
-                username={questionData.student.username}
-              />
+              <Post.Root >
+                <Post.Info username={username} firstName={firstName} lastName={lastName} />
+                <Post.Content title={title} content={content} />
+                <Post.Tags course={course.name} tags={tags} >
+                  <Post.Button />
+                </Post.Tags>
+              </Post.Root>
             </div>
             <div className="stuukes-title">
               <h2 className={montserrat.className}>Stuukes</h2>
