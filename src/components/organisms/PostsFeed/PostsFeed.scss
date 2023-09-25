@@ -1,3 +1,12 @@
 .feed-content {
   background-color: #191D2C;
+
+  .question:hover {
+    background-color: #1f2436;
+    cursor: pointer;
+
+    .question-bottom button:not(:hover) {
+      background-color: #1f2436;
+    }
+  }
 }

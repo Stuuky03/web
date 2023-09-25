@@ -4,30 +4,9 @@ import "./PostsFeed.scss"
 import { useQuery } from '@apollo/client';
 
 import Question from "@/components/molecules/Question/Question"
-import { gql } from "@/utils/types/__generated__/gql";
+import { getAllQuestions } from "./graphql/feedQuery";
 
-const getAllQuestions = gql(/* GraphQL */ `
-  query QuestionFeed {
-    questionFeed {
-        id
-        title
-        content
-        isDraft
-        createdAt
-        studentId
-        courseId
-        course {
-            name
-        }
-        tags {
-            name
-        }
-        student {
-            username
-        }
-    }
-}
-`)
+
 
 const PostsFeed = () => {
   const { error, data } = useQuery(getAllQuestions)
@@ -41,7 +20,9 @@ const PostsFeed = () => {
           id={id}
           title={title}
           content={content}
-          student={student.username}
+          username={student.username}
+          firstName={student.firstName}
+          lastName={student.lastName}
           course={course.name}
           tags={tags}
         />
@@ -52,14 +33,6 @@ const PostsFeed = () => {
   return (
     <div className='feed-content'>
       {loadFeed(data)}
-      <Question student="albberrrt" course='Desenvolvimento de Sistemas' title="Precisod e ajuda com tal máteria" content='Lorem Impsuim lalalalalallalalalal SADFKMJASDFKJFASDJKJKFASDJKFASD' tags={[
-        { name: "tags1" },
-        { name: "tag2" }
-      ]} />
-      <Question student="albberrrt" course='Desenvolvimento de Sistemas' title="Precisod e ajuda com tal máteria" content='Lorem Impsuim lalalalalallalalalal SADFKMJASDFKJFASDJKJKFASDJKFASD' tags={[
-        { name: "tags1" },
-        { name: "tag2" }
-      ]} />
     </div>
   )
 }

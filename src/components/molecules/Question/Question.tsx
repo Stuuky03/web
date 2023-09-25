@@ -2,9 +2,12 @@ import Button from "@/components/atoms/Button/Button"
 import "./Question.scss"
 import ProfileImage from "@/components/atoms/ProfileImage/ProfileImage"
 import { montserrat } from "@/utils/fonts/font"
+import { getFullName } from "@/utils/functions"
 
 type QuestionProps = {
-  student: string,
+  username: string,
+  firstName: string,
+  lastName: string
   title: string,
   content: string,
   course: string,
@@ -14,13 +17,15 @@ type QuestionProps = {
   }[] | null | undefined
 }
 
-const Question = ({ student, content, course, title, tags }: QuestionProps) => {
+const Question = ({ username, firstName, lastName, content, course, title, tags }: QuestionProps) => {
+  const fullName = getFullName(firstName, lastName)
+
   return (
     <div className='question' >
       <div className='question-header' >
-        <ProfileImage studentUsername={student} height={32} width={32} />
+        <ProfileImage studentUsername={username} height={32} width={32} />
         <div className={`${montserrat.className} info`}>
-          <span className="username">{student}</span>
+          <span className="username">{fullName}</span>
           <span className="dot">•</span>
           <span className="date">alguns segundos atrás</span>
         </div>
@@ -48,9 +53,9 @@ type PostTagsProps = {
 }
 const PostTags = ({ tags }: PostTagsProps) => {
   return (
-    tags?.map((tags, key) => {
+    tags?.map((tags) => {
       return (
-        <span className="tag" key={key}>#{tags?.name.toLowerCase().replace(/\s/g, '')}</span>
+        <span className="tag" key={tags?.name}>#{tags?.name.toLowerCase().replace(/\s/g, '')}</span>
       )
     })
   )
