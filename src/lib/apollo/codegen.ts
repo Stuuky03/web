@@ -6,6 +6,9 @@ const config: CodegenConfig = {
     'src/utils/types/__generated__/': {
       preset: 'client',
       documents: ['src/**/*.{ts,tsx}'],
+      config: {
+        nonOptionalTypename: true
+      },
       presetConfig: {
         gqlTagName: 'gql',
       },

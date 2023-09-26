@@ -1,29 +1,25 @@
 "use client"
 
 import "./PostsFeed.scss"
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
-import Question from "@/components/molecules/Question/Question"
+import Post from "@/components/molecules/Post"
 import { getAllQuestions } from "./graphql/feedQuery";
 
 const PostsFeed = () => {
-  const { error, data } = useQuery(getAllQuestions)
+  const { data } = useQuery(getAllQuestions)
 
   type questionProps = typeof data
   function loadFeed(data: questionProps) {
-    return data?.questionFeed.map(({ id, title, content, student, course, tags }) => {
+    return data?.questionFeed.map(({ id, title, content, student: { username, firstName, lastName }, course, tags }) => {
       return (
-        <Question
-          key={id}
-          id={id}
-          title={title}
-          content={content}
-          username={student.username}
-          firstName={student.firstName}
-          lastName={student.lastName}
-          course={course.name}
-          tags={tags}
-        />
+        <Post.Root key={id} >
+          <Post.Info username={username} firstName={firstName} lastName={lastName} />
+          <Post.Content title={title} content={content} />
+          <Post.Tags course={course.name} tags={tags} >
+            <Post.Button />
+          </Post.Tags>
+        </Post.Root>
       )
     })
   }

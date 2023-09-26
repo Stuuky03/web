@@ -19,7 +19,7 @@ export type Scalars = {
 };
 
 export type BadgeInfo = {
-  __typename?: 'BadgeInfo';
+  __typename: 'BadgeInfo';
   description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
   imageUrl?: Maybe<Scalars['String']['output']>;
@@ -27,18 +27,18 @@ export type BadgeInfo = {
 };
 
 export type Course = {
-  __typename?: 'Course';
+  __typename: 'Course';
   description: Scalars['String']['output'];
   name: Scalars['ID']['output'];
 };
 
 export type Mutation = {
-  __typename?: 'Mutation';
+  __typename: 'Mutation';
   question?: Maybe<Question>;
 };
 
 export type Query = {
-  __typename?: 'Query';
+  __typename: 'Query';
   allStudents?: Maybe<Array<Maybe<Student>>>;
   questionById?: Maybe<Question>;
   questionFeed: Array<Question>;
@@ -51,7 +51,7 @@ export type QueryQuestionByIdArgs = {
 };
 
 export type Question = {
-  __typename?: 'Question';
+  __typename: 'Question';
   content: Scalars['String']['output'];
   course: Course;
   courseId: Scalars['String']['output'];
@@ -61,12 +61,12 @@ export type Question = {
   student: Student;
   studentId: Scalars['String']['output'];
   stuukes?: Maybe<Array<Stuuke>>;
-  tags?: Maybe<Array<Maybe<Tag>>>;
+  tags: Array<Tag>;
   title: Scalars['String']['output'];
 };
 
 export type Reference = {
-  __typename?: 'Reference';
+  __typename: 'Reference';
   id: Scalars['ID']['output'];
   stuuke: Stuuke;
   stuukeId: Scalars['String']['output'];
@@ -75,7 +75,7 @@ export type Reference = {
 };
 
 export type Student = {
-  __typename?: 'Student';
+  __typename: 'Student';
   badges?: Maybe<Array<Maybe<StudentBadge>>>;
   badgesCount: Scalars['Int']['output'];
   bio: Scalars['String']['output'];
@@ -94,7 +94,7 @@ export type Student = {
 };
 
 export type StudentBadge = {
-  __typename?: 'StudentBadge';
+  __typename: 'StudentBadge';
   badgeId: Scalars['String']['output'];
   badgeInfo?: Maybe<BadgeInfo>;
   earnedAt: Scalars['DateTime']['output'];
@@ -103,7 +103,7 @@ export type StudentBadge = {
 };
 
 export type Stuuke = {
-  __typename?: 'Stuuke';
+  __typename: 'Stuuke';
   content: Scalars['String']['output'];
   course: Course;
   courseId: Scalars['String']['output'];
@@ -115,12 +115,12 @@ export type Stuuke = {
   references?: Maybe<Array<Maybe<Reference>>>;
   student: Student;
   studentId: Scalars['String']['output'];
-  tags?: Maybe<Array<Maybe<Tag>>>;
+  tags: Array<Maybe<Tag>>;
   title: Scalars['String']['output'];
 };
 
 export type Tag = {
-  __typename?: 'Tag';
+  __typename: 'Tag';
   description: Scalars['String']['output'];
   name: Scalars['String']['output'];
 };
@@ -130,12 +130,12 @@ export type QuestionByIdQueryVariables = Exact<{
 }>;
 
 
-export type QuestionByIdQuery = { __typename?: 'Query', questionById?: { __typename?: 'Question', id: string, title: string, content: string, createdAt: any, course: { __typename?: 'Course', name: string, description: string }, tags?: Array<{ __typename?: 'Tag', name: string, description: string } | null> | null, student: { __typename?: 'Student', firstName: string, lastName: string, username: string }, stuukes?: Array<{ __typename?: 'Stuuke', id: string, title: string, content: string, createdAt: any, course: { __typename?: 'Course', name: string, description: string }, tags?: Array<{ __typename?: 'Tag', name: string, description: string } | null> | null, student: { __typename?: 'Student', firstName: string, lastName: string, username: string }, references?: Array<{ __typename?: 'Reference', title: string, url: string } | null> | null }> | null } | null };
+export type QuestionByIdQuery = { __typename: 'Query', questionById?: { __typename: 'Question', id: string, title: string, content: string, createdAt: any, course: { __typename: 'Course', name: string, description: string }, tags: Array<{ __typename: 'Tag', name: string, description: string }>, student: { __typename: 'Student', firstName: string, lastName: string, username: string }, stuukes?: Array<{ __typename: 'Stuuke', id: string, title: string, content: string, createdAt: any, course: { __typename: 'Course', name: string, description: string }, tags: Array<{ __typename: 'Tag', name: string, description: string } | null>, student: { __typename: 'Student', firstName: string, lastName: string, username: string }, references?: Array<{ __typename: 'Reference', title: string, url: string } | null> | null }> | null } | null };
 
 export type QuestionFeedQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type QuestionFeedQuery = { __typename?: 'Query', questionFeed: Array<{ __typename?: 'Question', id: string, title: string, content: string, isDraft: boolean, createdAt: any, studentId: string, courseId: string, course: { __typename?: 'Course', name: string }, tags?: Array<{ __typename?: 'Tag', name: string } | null> | null, student: { __typename?: 'Student', username: string, firstName: string, lastName: string } }> };
+export type QuestionFeedQuery = { __typename: 'Query', questionFeed: Array<{ __typename: 'Question', id: string, title: string, content: string, isDraft: boolean, createdAt: any, studentId: string, courseId: string, course: { __typename: 'Course', name: string }, tags: Array<{ __typename: 'Tag', name: string }>, student: { __typename: 'Student', username: string, firstName: string, lastName: string } }> };
 
 
 export const QuestionByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QuestionById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"questionId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"questionById"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"questionId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"course"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"student"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"stuukes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"course"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"student"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"references"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<QuestionByIdQuery, QuestionByIdQueryVariables>;

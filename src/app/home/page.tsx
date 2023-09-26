@@ -27,6 +27,8 @@ const studentData: studentDataProps = {
   timesOnPodium: 7
 }
 
+
+
 export default function home() {
   return (
     <>
@@ -48,3 +50,4 @@ export default function home() {
     </>
   )
 }
+

@@ -1,4 +1,3 @@
-"use client"
 import "./page.scss"
 
 import { useQuery } from "@apollo/client";
@@ -11,31 +10,21 @@ import { montserrat } from "@/utils/fonts/font";
 import { getQuestionById } from "./graphql/getQuestionById";
 import Post from "@/components/molecules/Post";
 
-type params = { params: { questionId: string } }
-export default function Page({ params: { questionId } }: params) {
-
-  const { loading, data } = useQuery(getQuestionById, {
+export async function generateStaticParams() {
+  const { loading, data } = await useQuery(getQuestionById, {
     variables: { questionId }
   })
 
+}
+
+type params = { params: { questionId: string } }
+export default function Page({ params: { questionId } }: params) {
+
+
   if (loading || data == null || data.questionById == null) return null
 
-  const { title, content, course, tags, createdAt, id, student: { firstName, lastName, username } } = {
-    id: data.questionById.id,
-    title: data.questionById.title,
-    content: data.questionById.content,
-    createdAt: data.questionById.createdAt,
-    course: {
-      name: data.questionById.course.name,
-      description: data.questionById.course.description
-    },
-    tags: data.questionById.tags,
-    student: {
-      firstName: data.questionById.student.firstName,
-      lastName: data.questionById.student.lastName,
-      username: data.questionById.student.username,
-    },
-  }
+  const { title, content, course, tags, createdAt, id, student, stuukes } = data.questionById
+  const { username, firstName, lastName } = student
 
   return (
     <>

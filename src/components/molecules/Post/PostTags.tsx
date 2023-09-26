@@ -4,20 +4,22 @@ import { ReactNode } from "react"
 
 type PostTagsProps = {
   course: string
-  tags: {
-    __typename?: "Tag",
-    name: string
-  }[]
-  button: ReactNode
+  tags: ({
+    __typename: "Tag";
+    name: string;
+  })[]
+  children: ReactNode
 }
-const PostTags = ({ course, tags, button }: PostTagsProps) => {
+const PostTags = ({ course, tags, children }: PostTagsProps) => {
   return (
     <div className='post-bottom' >
       <div className={`${montserrat.className} tags-container`}>
         <span className="tag course">{course}</span>
-        <PostTag tags={tags} />
+        {
+          tags === null || undefined ? null : <PostTag tags={tags} />
+        }
       </div>
-      {button}
+      {children}
     </div>
   )
 }
