@@ -1,0 +1,19 @@
+main {
+  color: white;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+blockquote {
+  display: flex;
+  gap: 1rem;
+  color: #9CA3AF;
+
+  &::before {
+    content: "";
+    width: 0.25rem;
+    border-radius: 32px;
+    background-color: #D9D9D9;
+  }
+}

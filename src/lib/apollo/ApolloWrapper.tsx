@@ -16,7 +16,7 @@ type ApolloProviderProps = {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: "http://localhost:8080/graphql",
+    uri: "http://192.168.15.5:8080/graphql",
     fetchOptions: { cache: "no-store" },
   })
 
