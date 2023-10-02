@@ -25,4 +25,29 @@ query QuestionFeed {
 }
 `)
 
+const getAllStuukes = gql(/* GraphQL */`
+query QuestionById {
+    stuukeFeed {
+        id
+      title
+      content
+      isDraft
+      createdAt
+      studentId
+      courseId
+      course {
+          name
+      }
+      tags {
+          name
+      }
+      student {
+          username
+          firstName
+          lastName
+      }
+    }
+}
+`)
+
 export { getAllQuestions }

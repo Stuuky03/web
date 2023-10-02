@@ -1,25 +1,36 @@
 main {
   display: flex;
   justify-content: center;
-
+  
   .main-container {
     width: 835px;
     display: flex;
     flex-direction: column;
     background-color: #191D2C;
     border-radius: 1rem;
+    padding: 0 20px 0 20px;
     
   
     .main-header {
       display: flex;
       gap: 2rem;
       color: white;
-      padding: 1rem;
-      .back-icon {
-        width: 30px;
-        height: 20px;
-        color: white;
-        transform: rotate(180deg);
+      padding: 1.25rem 1.25rem 1.5rem 1.25rem;
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .back-icon {
+          width: 30px;
+          height: 20px;
+          color: white;
+          transform: rotate(180deg);
+        }
       }
     }
 

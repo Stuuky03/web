@@ -8,7 +8,7 @@ type PostTagsProps = {
     __typename: "Tag";
     name: string;
   })[]
-  children: ReactNode
+  children?: ReactNode
 }
 const PostTags = ({ course, tags, children }: PostTagsProps) => {
   return (

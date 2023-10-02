@@ -1,4 +1,4 @@
-
+import "./Post.scss"
 import { ReactNode } from "react"
 
 type PostRootProps = {
