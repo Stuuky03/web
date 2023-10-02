@@ -1,21 +1,66 @@
 main {
   display: flex;
   justify-content: center;
-  
+
   .main-container {
     width: 835px;
     display: flex;
     flex-direction: column;
     background-color: #191D2C;
     border-radius: 1rem;
-    padding: 0 20px 0 20px;
     
-  
+    .stuukes-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .stuuke-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        &::after {
+          content: "";
+          width: 100%;
+          height: 1px;
+          background-color: #24293D;
+        }
+
+        .post {
+          margin-left: 2.5rem;
+        }
+      }
+    }
+    
+    .question-container {
+      display: flex;
+      flex-direction: column;
+      &::after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: #24293D;
+      }
+    }
+
+    .question-container .post {
+      padding: 2.5rem;
+    }
+
+    .stuukes-container .stuuke-container .post .post-content{
+      padding: 0;
+      margin: 0 4rem 0 2.5rem;
+
+      h5 {
+        font-size: 1.5rem;
+      }
+    }
+
+
     .main-header {
       display: flex;
       gap: 2rem;
       color: white;
-      padding: 1.25rem 1.25rem 1.5rem 1.25rem;
+      padding: 1.25rem 1.25rem 0rem 2.5rem;
       margin-top: 1rem;
       font-size: 1.25rem;
       align-items: center;
@@ -34,12 +79,9 @@ main {
       }
     }
 
-    .question-container {
-      display: flex;
-    }
-
     .stuukes-title {
-      margin: 1rem;
+      margin: 2rem 1rem 2rem 2.5rem;
+
       h2 {
         color: white;
       }

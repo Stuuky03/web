@@ -51,12 +51,14 @@ export default function Page({ params: { questionId } }: params) {
               {
                 stuukes?.map(({ id, title, content, student: { username, firstName, lastName }, course, tags }) => {
                   return (
-                    <Post.Root key={id}>
-                      <Post.Info username={username} firstName={firstName} lastName={lastName} />
-                      <Post.Content title={title} content={content} />
-                      <Post.Tags course={course.name} tags={tags} >
-                      </Post.Tags>
-                    </Post.Root>
+                    <div className="stuuke-container" key={id}>
+                      <Post.Root>
+                        <Post.Info username={username} firstName={firstName} lastName={lastName} />
+                        <Post.Content title={title} content={content} />
+                        <Post.Tags course={course.name} tags={tags} >
+                        </Post.Tags>
+                      </Post.Root>
+                    </div>
                   )
                 })
               }

@@ -7,13 +7,14 @@ type PostContentProps = {
 }
 const PostContent = ({ title, content }: PostContentProps) => {
 
-  // const decoded = Buffer.from(content, "base64").toString("utf8")
+  const contentDecoded = Buffer.from(content, "base64").toString("utf8")
 
   return (
     <div className='post-content' >
       <h5>{title}</h5>
-      <div>
-        <Markdown>{`${content}`}</Markdown>
+
+      <div className="markdown-body">
+        <Markdown>{`${contentDecoded}`}</Markdown>
       </div>
     </div>
   )

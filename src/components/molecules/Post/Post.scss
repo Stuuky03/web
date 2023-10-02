@@ -2,8 +2,7 @@
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  padding: 1.25rem;
-  border-bottom: 1px solid #24293D;
+  // border-bottom: 1px solid #24293D;
   transition: all 150ms ease-in-out;
 
   .post-header {
@@ -37,10 +36,10 @@
   .post-content {
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
+    gap: 1rem;
     color: white;
     word-wrap: break-word;
-    margin: 0 40px 0 40px;
+    margin: 0 20px 0 40px;
     font-size: 1.25rem;
     line-height: 1.5;
     
@@ -48,6 +47,45 @@
       font-size: 1.25rem;
       font-weight: 700;
     }
+
+    .markdown-body p {
+      margin-top: .5em;
+      margin-bottom: .5em;
+    }
+    .markdown-body ul {
+      margin-top: .5em;
+      margin-bottom: .5em;
+      list-style: disc outside none;
+    }
+    
+    .markdown-body ul li {
+      margin-left: 1em;
+      display: list-item;
+      text-align: -webkit-match-parent;
+    }
+    .markdown-body h1 {
+      margin-top: 1.5rem;
+    }
+    .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+      margin-top: 1em;
+      margin-bottom: .5em;
+    }
+
+    .markdown-body blockquote {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1em;
+      margin-bottom: .5em;
+      color: #9CA3AF;
+    
+      &::before {
+        content: "";
+        width: 32px;
+        border-radius: 32px;
+        background-color: #D9D9D9;
+      }
+    }
+
   }
   .post-bottom {
     width: 100%;

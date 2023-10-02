@@ -1,17 +1,29 @@
 .feed-content {
   background-color: #191D2C;
-
+  
+  a .post{
+    padding: 1.25rem;
+  }
   a .post:hover {
     background-color: #1f2436;
     cursor: pointer;
-
+    
     .post-bottom button:not(:hover) {
       background-color: #1f2436;
     }
   }
-
+  
   a {
     text-decoration: none;
     color: white;
+    display: flex;
+    flex-direction: column;
+    
+    &::after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: #24293D;
+    }
   }
 }
