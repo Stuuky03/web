@@ -1,6 +1,13 @@
 import { z } from 'zod'
 
 const signUpFormSchema = z.object({
+  firstName: z.string()
+    .nonempty('Digite o seu nome')
+    .trim(),
+
+  lastName: z.string()
+    .nonempty('Digite o seu sobrenome')
+    .trim(),
 
   username: z.string()
     .nonempty('Digite o username')

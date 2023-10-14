@@ -14,8 +14,8 @@ export const useHandleSignup = () => {
     resolver: zodResolver(signUpFormSchema)
   })
 
-  const handleSignUp = async ({ username, email, password }: FormData) => {
-    const response = await signUp({ username, email, password })
+  const handleSignUp = async ({ firstName, lastName, username, email, password }: FormData) => {
+    const response = await signUp({ firstName, lastName, username, email, password })
 
     setError("email", {
       type: "manual",

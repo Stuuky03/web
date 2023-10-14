@@ -11,6 +11,8 @@ import linkArrowImage from '@/assets/icons/small-arrow.svg'
 import { useHandleSignup } from '../Hooks/useHandleSignup'
 
 type FormData = {
+  firstName: string,
+  lastName: string,
   username: string,
   email: string,
   password: string
@@ -29,6 +31,18 @@ const SignUpForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='input-container'>
+      <Input
+          {...register("firstName")}
+          placeholder='Nome'
+          id='firstName'
+          errorMessage={errors.username?.message}
+        />
+        <Input
+          {...register("lastName")}
+          placeholder='Sobrenome'
+          id='lastName'
+          errorMessage={errors.username?.message}
+        />
         <Input
           {...register("username")}
           placeholder='Nome de usuário'
@@ -47,7 +61,6 @@ const SignUpForm = () => {
           id='password'
           errorMessage={errors.password?.message}
           type='password'
-
         />
       </div>
 
