@@ -25,7 +25,7 @@ export default function Page({ params: { questionId } }: params) {
 
   return (
     <>
-
+      <PageHeader />
       <main>
         <div className="main-container">
           <div className="main-header">

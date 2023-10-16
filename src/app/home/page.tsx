@@ -7,6 +7,7 @@ import PostsFeed from '@/components/organisms/PostsFeed/PostsFeed'
 import MakeYourQuestion from '@/components/molecules/MakeYourQuestion/MakeYourQuestion'
 import UserProfileContent from '@/components/organisms/UserProfileContent/UserProfileContent'
 import { useState } from 'react'
+import PageHeader from '@/components/organisms/PageHeader/PageHeader'
 
 type studentDataProps = {
   username: string
@@ -32,6 +33,7 @@ export default function Home() {
 
   return (
     <>
+      <PageHeader />
       <main>
         <section className="left-aside">
           <MakeYourQuestion />

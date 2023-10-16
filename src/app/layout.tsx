@@ -2,7 +2,6 @@ import '../styles/globals.scss'
 import type { Metadata } from 'next'
 import { inter } from '@/utils/fonts/font'
 import ApolloWrapper from '@/lib/apollo/ApolloWrapper'
-import PageHeader from '@/components/organisms/PageHeader/PageHeader'
 
 export const metadata: Metadata = {
   title: 'Stuuky',
@@ -18,7 +17,6 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={inter.className}>
         <ApolloWrapper>
-          <PageHeader />
           {children}
         </ApolloWrapper>
       </body>
