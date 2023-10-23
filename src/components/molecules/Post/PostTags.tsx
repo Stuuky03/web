@@ -6,7 +6,8 @@ type PostTagsProps = {
   course: string
   tags: ({
     __typename: "Tag";
-    name: string;
+    id: string;
+    title: string;
   })[]
   children?: ReactNode
 }

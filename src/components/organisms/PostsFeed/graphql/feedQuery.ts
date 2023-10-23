@@ -1,6 +1,6 @@
-import { gql } from "@/utils/types/__generated__/gql";
+import { graphql } from "@/utils/types/__generated__/gql";
 
-const getAllQuestions = gql(/* GraphQL */ `
+const getAllQuestions = graphql(/* GraphQL */ `
 query QuestionFeed {
   questionFeed {
       id
@@ -11,10 +11,10 @@ query QuestionFeed {
       studentId
       courseId
       course {
-          name
+          title
       }
       tags {
-          name
+          title
       }
       student {
           username
@@ -25,8 +25,8 @@ query QuestionFeed {
 }
 `)
 
-const getAllStuukes = gql(/* GraphQL */`
-query QuestionById {
+const getAllStuukes = graphql(/* GraphQL */`
+query StuukeFeed {
     stuukeFeed {
         id
       title
@@ -36,10 +36,10 @@ query QuestionById {
       studentId
       courseId
       course {
-          name
+          title
       }
       tags {
-          name
+          title
       }
       student {
           username

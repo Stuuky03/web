@@ -1,49 +1,49 @@
-import { gql } from "@/utils/types/__generated__/gql"
+import { graphql } from "@/utils/types/__generated__/gql"
 
-const getQuestionById = gql(/* GraphQL */`
-  query QuestionById($questionId: String!) {
+const gqlGetQuestionById = graphql(/* GraphQL */`
+  query QuestionById($questionId: String) {
     questionById(id: $questionId) {
-      id
-      title
-      content
-      createdAt
-      course {
-          name
-          description
-      }
-      tags {
-          name
-          description
-      }
-      student {
-          firstName
-          lastName
-          username
-      }
-      stuukes {
+    id
+    title
+    content
+    createdAt
+    courseId
+    course {
+        title
+        description
+    }
+    tags {
+        id
+        title
+        description
+    }
+    student {
+        firstName
+        lastName
+        username
+    }
+    stuukes {
         id
         title
         content
         createdAt
         course {
-            name
+            title
             description
         }
         tags {
-            name
+            id
+            title
             description
         }
         student {
+            username
             firstName
             lastName
-            username
         }
-        references {
-            title
-            url
-        }
-      }
     }
-}`)
+}
+}
+`)
 
-export { getQuestionById }
+export { gqlGetQuestionById }

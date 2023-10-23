@@ -21,7 +21,7 @@ const PostsFeed = ({ type }: PostsFeed) => {
           <Post.Root>
             <Post.Info username={username} firstName={firstName} lastName={lastName} />
             <Post.Content title={title} content={content} />
-            <Post.Tags course={course.name} tags={tags} >
+            <Post.Tags course={course.title} tags={tags} >
               <Post.Button />
             </Post.Tags>
           </Post.Root>
