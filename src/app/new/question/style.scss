@@ -5,14 +5,39 @@ main {
   justify-content: center;
 }
 
-blockquote {
+.markdown-body p {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+.markdown-body ul {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  list-style: disc outside none;
+}
+
+.markdown-body ul li {
+  margin-left: 1em;
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+.markdown-body h1 {
+  margin-top: 1.5rem;
+}
+.markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+
+.markdown-body blockquote {
   display: flex;
   gap: 1rem;
+  margin-top: 1em;
+  margin-bottom: .5em;
   color: #9CA3AF;
 
   &::before {
     content: "";
-    width: 0.25rem;
+    width: 4px;
     border-radius: 32px;
     background-color: #D9D9D9;
   }
