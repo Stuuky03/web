@@ -13,23 +13,27 @@
     font-weight: 400;
     margin-top: 0.2rem;
   }
+  a {
+text-decoration: none;
+color: white;
 
-  span {
-    height: 40px;
-    padding: 0 1rem;
-    margin-top: 0.625rem;
-    display: flex;
-    background-color: #2372E7;
-    border-radius: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
+    span {
+      height: 40px;
+      padding: 0 1rem;
+      margin-top: 0.625rem;
+      display: flex;
+      background-color: #2372E7;
+      border-radius: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
 
-    p {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 2px;
+      p {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
     }
   }
 }

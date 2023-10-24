@@ -38,7 +38,7 @@ export default function Page({ params: { questionId } }: params) {
             <div className="question-container">
               <Post.Root >
                 <Post.Info username={username} firstName={firstName} lastName={lastName} />
-                <Post.Content title={title} content={content} />
+                <Post.Content title={title} content={content} type="QUESTION" />
                 <Post.Tags course={course.title} tags={tags} >
                   <Post.Button />
                 </Post.Tags>
@@ -54,7 +54,7 @@ export default function Page({ params: { questionId } }: params) {
                     <div className="stuuke-container" key={id}>
                       <Post.Root>
                         <Post.Info username={username} firstName={firstName} lastName={lastName} />
-                        <Post.Content title={title} content={content} />
+                        <Post.Content title={title} content={content} type="STUUKE" />
                         <Post.Tags course={course.title} tags={tags} >
                         </Post.Tags>
                       </Post.Root>

@@ -20,7 +20,7 @@ const PostsFeed = ({ type }: PostsFeed) => {
         <Link href={`/question/${id}`} key={id} >
           <Post.Root>
             <Post.Info username={username} firstName={firstName} lastName={lastName} />
-            <Post.Content title={title} content={content} />
+            <Post.Content title={title} content={content} type="QUESTION" />
             <Post.Tags course={course.title} tags={tags} >
               <Post.Button />
             </Post.Tags>
