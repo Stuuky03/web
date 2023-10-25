@@ -42,3 +42,27 @@ main {
     background-color: #D9D9D9;
   }
 }
+
+header {
+  width: 100%;
+  margin: .5rem 0 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  .page-title-container {
+    width: 45%;
+
+    h3 {
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+  .icons-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+}
