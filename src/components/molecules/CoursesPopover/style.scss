@@ -1,0 +1,38 @@
+.courses-autocomplete-popover {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: #191D2C;
+  border: 1px solid #0000113a;
+  border-radius: .5rem;
+  position: absolute;
+
+  span {
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .popover-list {
+    border-top: 1px solid #24293D;
+
+    .popover-item {
+      padding: 1rem 1rem;
+      border-radius: 8px;
+
+      h5 {
+        font-size: .875rem;
+        font-weight: 500;
+      }
+
+      &:hover {
+        background-color: #24293D;
+        cursor: pointer;
+
+        h5 {
+          color: #3E84FF;
+        }
+      }
+    }
+  }
+}

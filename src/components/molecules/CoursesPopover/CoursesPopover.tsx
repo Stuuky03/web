@@ -1,7 +1,8 @@
+import "./style.scss"
+
 import { useSuspenseQuery } from "@apollo/client"
 import { forwardRef } from "react"
 import { gqlGetAllCourses } from "./graphql/getAllCourses"
-import { title } from "process"
 
 const CoursesPopover = forwardRef<HTMLDivElement | null>(
   function CoursesPopover({ }, ref) {
@@ -12,11 +13,11 @@ const CoursesPopover = forwardRef<HTMLDivElement | null>(
     return (
       <div ref={ref} className="courses-autocomplete-popover">
         <span>Cursos</span>
-        <div>
+        <div className="popover-list">
           {
             data.allCourses?.map((course) => {
               return (
-                <div key={course?.id}>
+                <div className="popover-item" key={course?.id}>
                   <h5>{course?.title}</h5>
                 </div>
               )

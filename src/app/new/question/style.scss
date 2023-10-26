@@ -3,6 +3,48 @@ main {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+
+  .main-content {
+    width: 835px;
+    display: flex;
+    flex-direction: column;
+    background-color: #191D2C;
+    padding: 0 4rem;
+    border-radius: 1rem;
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.875rem;
+      padding: 3rem 0;
+
+      .new-question-input {
+        input{
+          outline: none;
+          border: 0;
+          background-color: #191D2C;
+          color: white;
+          padding: 1px 2px;
+          font-size: 100%;
+
+          &::placeholder {
+            color: #6B7280;
+            font-weight: 400;
+          }
+        }
+        
+        .title-input {
+          width: 100%;
+          font-size: 2rem;
+          font-weight: 700;
+
+          &::placeholder {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
 }
 
 .markdown-body p {
@@ -66,3 +108,5 @@ header {
     align-items: center;
   }
 }
+
+

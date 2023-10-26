@@ -11,8 +11,22 @@ import notificationIcon from "@/assets/icons/notification-icon.png"
 import { montserrat } from "@/utils/fonts/font"
 import CoursesPopover from "@/components/molecules/CoursesPopover/CoursesPopover"
 
+type questionFormType = {
+  title: string,
+  course: string,
+  tags: string[],
+  content: string,
+  isDraft: boolean
+}
+
 const NewQuestion = () => {
-  const [postContent, setPostContent] = useState("")
+  const [questionForm, setQuestionForm] = useState<questionFormType>({
+    title: "",
+    course: "",
+    tags: [""],
+    content: "",
+    isDraft: true
+  })
   const [isPopoverVisible, setPopoverVisible] = useState(false)
   const coursesPopoverRef = useRef<HTMLDivElement | null>(null);
 
@@ -45,10 +59,10 @@ const NewQuestion = () => {
       <main>
         <div className="main-content">
           <section>
-            <div>
-              <input type="text" className="title-input" />
+            <div className="new-question-input">
+              <input type="text" className={`title-input ${montserrat.className}`} placeholder="Título da pergunta aqui..." />
             </div>
-            <div className="course-input-container select-container" >
+            <div className="new-question-input course-input-container select-container" >
               <input type="text" autoComplete="list" placeholder="Escolha o curso..." onClick={() => setPopoverVisible(!isPopoverVisible)} />
 
               {isPopoverVisible && (
