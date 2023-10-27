@@ -19,7 +19,7 @@ main {
       padding: 3rem 0;
 
       .new-question-input {
-        input{
+        input, textarea{
           outline: none;
           border: 0;
           background-color: #191D2C;
@@ -37,10 +37,20 @@ main {
           width: 100%;
           font-size: 2rem;
           font-weight: 700;
+          word-wrap: break-word;
+          min-height: 42px;
+          max-height: 42px;
+          resize: none;
 
           &::placeholder {
             font-weight: 700;
           }
+        }
+      }
+
+      .bottom-container {
+        .select-container {
+          padding: .375rem 0;
         }
       }
     }
