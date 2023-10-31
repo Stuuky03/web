@@ -10,7 +10,7 @@ import Image from 'next/image'
 import notificationIcon from "@/assets/icons/notification-icon.png"
 import { montserrat } from "@/utils/fonts/font"
 import Popover from "@/components/molecules/Popover"
-import SelectedItem from "@/components/atoms/SelectedItem/SelectedItem"
+import SelectedItem from "@/components/atoms/NewPostCourse/NewPostCourse"
 
 type questionFormType = {
   title: string,
@@ -91,6 +91,10 @@ const NewQuestion = () => {
                 <SelectedItem title={questionForm.course} removeItem={handleRemoveCourseItem} />
               ) :
                 (
+                  // ====================== // =====================
+                  // TODO: transform this block into a component to handle it's queries
+                  // ====================== // =====================
+
                   <div className="new-question-input course-input-container select-container" >
                     <input
                       type="text"
@@ -106,7 +110,7 @@ const NewQuestion = () => {
                     {isPopoverVisible && (
                       <Popover.Root>
                         <Popover.Title title="Cursos" />
-                        <Popover.CourseList ref={coursesPopoverRef} addItem={handleAddCouseItem} />
+                        <Popover.CourseList searchString={questionForm.course} ref={coursesPopoverRef} addItem={handleAddCouseItem} />
                       </Popover.Root>
                     )}
                   </div>

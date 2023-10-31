@@ -3,11 +3,15 @@ import { useSuspenseQuery } from "@apollo/client"
 import { forwardRef } from "react"
 
 type PopoverCourseListProps = {
-  addItem: (course: string) => void
+  addItem: (course: string) => void,
+  searchString: string
 }
 const PopoverCourseList = forwardRef<HTMLDivElement, PopoverCourseListProps>(
-  function PopoverCourseList({ addItem }, ref) {
-    const { data } = useSuspenseQuery(gqlGetAllCourses)
+  function PopoverCourseList({ addItem, searchString }, ref) {
+    const { data } = useSuspenseQuery(gqlGetAllCourses, {
+      variables: { courseTitle: searchString },
+    })
+
     if (data === null || data.allCourses === null) {
       return (
         <div className="popover-list-error">
