@@ -9,7 +9,7 @@ import Link from "next/link";
 import backIcon from "@/assets/icons/back-icon.svg"
 import PageHeader from "@/components/organisms/PageHeader/PageHeader";
 import { montserrat } from "@/utils/fonts/font";
-import { gqlGetQuestionById } from "./graphql/getQuestionById";
+import { gqlGetQuestionById } from "@/graphql/queries/getQuestionById";
 import Post from "@/components/molecules/Post";
 
 type params = { params: { questionId: string } }

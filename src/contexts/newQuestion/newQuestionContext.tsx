@@ -1,7 +1,6 @@
 "use client"
 
-import { title } from "process"
-import { ReactNode, createContext, useMemo, useState } from "react"
+import { ReactNode, createContext, useState } from "react"
 
 type questionFormType = {
   title: string,
@@ -19,7 +18,7 @@ const questionForm = {
 }
 type newQuestionContextData = {
   questionForm: questionFormType
-  handleSetQuestionForm: (question: questionFormType) => void
+  saveQuestionForm: (question: questionFormType) => void
 }
 
 export const NewQuestionContext = createContext({ questionForm } as newQuestionContextData)
@@ -36,12 +35,19 @@ export function NewQuestionProvider({ children }: newQuestionProvider) {
     isDraft: true
   })
 
-  function handleSetQuestionForm(question: questionFormType) {
-    setQuestionForm(question)
+  function saveQuestionForm(question: questionFormType) {
+    const newQuestion: questionFormType = {
+      title: question.title,
+      content: question.content,
+      course: question.course,
+      tags: question.tags,
+      isDraft: question.isDraft
+    }
+    setQuestionForm(newQuestion)
   }
 
   return (
-    <NewQuestionContext.Provider value={{ questionForm, handleSetQuestionForm }} >
+    <NewQuestionContext.Provider value={{ questionForm, saveQuestionForm }} >
       {children}
     </NewQuestionContext.Provider>
   )

@@ -1,4 +1,4 @@
-.courses-autocomplete-popover {
+.popover-root {
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -11,11 +11,10 @@
     padding: 1rem;
     font-weight: 600;
     font-size: 1rem;
+    border-bottom: 1px solid #24293D;
   }
 
   .popover-list {
-    border-top: 1px solid #24293D;
-
     .popover-item {
       padding: 1rem 1rem;
       border-radius: 8px;

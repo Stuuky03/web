@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 import Post from "@/components/molecules/Post"
-import { getAllQuestions } from "./graphql/feedQuery";
+import { getAllQuestions } from "../../../graphql/queries/getAllQuestions";
 
 type PostsFeed = {
   type: "QUESTION" | "STUUKE"
