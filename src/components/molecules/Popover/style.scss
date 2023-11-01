@@ -24,7 +24,7 @@
         font-weight: 500;
       }
 
-      &:hover {
+      &:not(.error):hover {
         background-color: #24293D;
         cursor: pointer;
 

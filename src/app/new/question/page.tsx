@@ -9,8 +9,10 @@ import Image from 'next/image'
 
 import notificationIcon from "@/assets/icons/notification-icon.png"
 import { montserrat } from "@/utils/fonts/font"
-import Popover from "@/components/molecules/Popover"
+
 import SelectedItem from "@/components/atoms/NewPostCourse/NewPostCourse"
+import CourseSelector from "@/components/organisms/CourseSelector/CourseSelector"
+import { removeFromArray } from "@/utils/functions/removeFromArray"
 
 type questionFormType = {
   title: string,
@@ -24,7 +26,7 @@ const NewQuestion = () => {
   const [questionForm, setQuestionForm] = useState<questionFormType>({
     title: "",
     course: "",
-    tags: [""],
+    tags: [],
     content: "",
     isDraft: true
   })
@@ -35,6 +37,12 @@ const NewQuestion = () => {
 
   function handleRemoveCourseItem() {
     setQuestionForm({ ...questionForm, course: "" })
+  }
+  function handleRemoveTagItem(tagTitle: string) {
+    const currentTags = questionForm.tags
+    const newTags = removeFromArray(currentTags, tagTitle)
+
+    setQuestionForm({ ...questionForm, tags: newTags })
   }
 
   function handleAddCouseItem(course: string) {
@@ -91,32 +99,14 @@ const NewQuestion = () => {
                 <SelectedItem title={questionForm.course} removeItem={handleRemoveCourseItem} />
               ) :
                 (
-                  // ====================== // =====================
-                  // TODO: transform this block into a component to handle it's queries
-                  // ====================== // =====================
-
-                  <div className="new-question-input course-input-container select-container" >
-                    <input
-                      type="text"
-                      autoComplete="list"
-                      placeholder="Escolha o curso..."
-                      onClick={() => setPopoverVisible(!isPopoverVisible)}
-                      onBlur={event => setQuestionForm({
-                        ...questionForm,
-                        course: event.target.value
-                      })}
-                    />
-
-                    {isPopoverVisible && (
-                      <Popover.Root>
-                        <Popover.Title title="Cursos" />
-                        <Popover.CourseList searchString={questionForm.course} ref={coursesPopoverRef} addItem={handleAddCouseItem} />
-                      </Popover.Root>
-                    )}
-                  </div>
+                  <CourseSelector addItem={handleAddCouseItem} questionCourse={questionForm.course} />
                 )
               }
+              {questionForm.tags.map((tag) => {
+                return <SelectedItem title={tag} removeItem={handleRemoveTagItem} key={tag} />
+              })
 
+              }
             </div>
           </section>
         </div>
