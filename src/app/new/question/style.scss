@@ -1,22 +1,69 @@
 main {
   color: white;
   display: flex;
+  flex-direction: column;
   gap: 1.5rem;
-  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .edit-mode-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 1rem;
+    width: 835px;
+
+    button {
+      border: none;
+      background-color: #000011;
+      color: #D9D9D9;
+      font-size: 1.2rem;
+      font-weight: 400;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+      &:not(.active) {
+        color: white;
+        font-weight: 600;
+      }
+    }
+  }
 
   .main-content {
     width: 835px;
     display: flex;
     flex-direction: column;
     background-color: #191D2C;
-    padding: 0 4rem;
     border-radius: 1rem;
+    padding: 3rem 0;
+    height: 77%;
+    overflow-y: scroll;
 
+    .title-preview {
+      width: 100%;
+      font-size: 2rem;
+      font-weight: 700;
+      word-wrap: break-word;
+      padding-bottom: 2rem;
+    }
+
+    .content-preview {
+      height: 100%;
+      display: flex;
+      font-size: 1.25rem;
+      width: 100%;
+    }
+    
+    .header-section {
+      padding-bottom: 2rem;
+    }
     section {
+      padding: 0 4rem;
       display: flex;
       flex-direction: column;
       gap: 1.875rem;
-      padding: 3rem 0;
 
       .new-question-input {
         input, textarea{
@@ -41,6 +88,7 @@ main {
           min-height: 42px;
           max-height: 42px;
           resize: none;
+          
 
           &::placeholder {
             font-weight: 700;
@@ -48,7 +96,56 @@ main {
         }
       }
     }
+
+    .content-tools {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.875rem;
+      width: 100%;
+      background-color: #24293D;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      
+      .main-tools {
+        width: 100%;
+      }
+    }
+
+    .content-section {
+      display: flex;
+      height: 100%;
+      margin-top: 2rem;
+
+      textarea {
+        outline: none;
+        border: 0;
+        background-color: #191D2C;
+        color: white;
+        padding: 1px 2px;
+        font-size: 1.25rem;
+        resize: none;
+        height: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        overflow: hidden;
+
+        &::placeholder {
+          color: #6B7280;
+          font-weight: 400;
+        }
+      }
+    }
+      section {
+        padding: 0 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.875rem;
+      }
   }
+}
+
+.markdown-body {
+  overflow-wrap: break-word;
 }
 
 .markdown-body p {
@@ -86,6 +183,11 @@ main {
     width: 4px;
     border-radius: 32px;
     background-color: #D9D9D9;
+  }
+
+  p {
+    margin-top: .275rem;
+    margin-bottom: .275rem;
   }
 }
 

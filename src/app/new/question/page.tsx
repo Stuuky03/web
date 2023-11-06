@@ -8,6 +8,9 @@ import ProfileImage from "@/components/atoms/ProfileImage/ProfileImage"
 import Image from 'next/image'
 
 import notificationIcon from "@/assets/icons/notification-icon.png"
+import toolsIcons from "@/assets/icons/Tools.png"
+import moreIcons from "@/assets/icons/More.png"
+
 import { montserrat } from "@/utils/fonts/font"
 
 import SelectedItem from "@/components/atoms/NewPostCourse/NewPostCourse"
@@ -32,6 +35,7 @@ const NewQuestion = () => {
   })
 
   const [isPopoverVisible, setPopoverVisible] = useState(false)
+  const [isPreviewing, setPreviewing] = useState(true)
   const coursesPopoverRef = useRef<HTMLDivElement | null>(null);
   const titleTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -85,30 +89,76 @@ const NewQuestion = () => {
         </div>
       </header>
       <main>
+        <div className="edit-mode-buttons">
+          <button className={isPreviewing ? "" : "active"} type="button" onClick={() => setPreviewing(true)}>Edição</button>
+          <button className={isPreviewing ? "active" : ""} type="button" onClick={() => setPreviewing(false)}>Prévia</button>
+        </div>
         <div className="main-content">
-          <section>
-            <div className="new-question-input">
-              <textarea
-                ref={titleTextAreaRef}
-                className={`title-input ${montserrat.className}`}
-                placeholder="Título da pergunta aqui..."
-                onInput={changeTitleTextAreaHeight} />
-            </div>
-            <div className="bottom-container">
-              {questionForm.course ? (
-                <SelectedItem title={questionForm.course} removeItem={handleRemoveCourseItem} />
-              ) :
-                (
-                  <CourseSelector addItem={handleAddCouseItem} questionCourse={questionForm.course} />
-                )
-              }
-              {questionForm.tags.map((tag) => {
-                return <SelectedItem title={tag} removeItem={handleRemoveTagItem} key={tag} />
-              })
+          {isPreviewing ?
+            <>
+              <section className="header-section">
+                <div className="new-question-input">
+                  <textarea
+                    ref={titleTextAreaRef}
+                    className={`title-input ${montserrat.className}`}
+                    placeholder="Título da pergunta aqui..."
+                    onInput={changeTitleTextAreaHeight}
+                    onChange={event => setQuestionForm({
+                      ...questionForm,
+                      title: event.target.value
+                    })}
+                    value={questionForm.title}
+                  />
+                </div>
+                <div className="bottom-container">
+                  {questionForm.course ? (
+                    <SelectedItem title={questionForm.course} removeItem={handleRemoveCourseItem} />
+                  ) :
+                    (
+                      <CourseSelector addItem={handleAddCouseItem} questionCourse={questionForm.course} />
+                    )
+                  }
+                  {questionForm.tags.map((tag) => {
+                    return <SelectedItem title={tag} removeItem={handleRemoveTagItem} key={tag} />
+                  })
 
-              }
-            </div>
-          </section>
+                  }
+                </div>
+              </section>
+              <section className="content-tools">
+                <div className="main-tools">
+                  <Image src={toolsIcons} height={29} width={376} alt="tools" />
+                </div>
+                <div className="more">
+                  <Image src={moreIcons} height={32} width={32} />
+                </div>
+              </section>
+              <section className="content-section">
+                <textarea className="content-input" placeholder="Escreva aqui sua pergunta..." value={questionForm.content} onChange={event => setQuestionForm(
+                  {
+                    ...questionForm,
+                    content: event.target.value
+                  }
+                )} ></textarea>
+              </section>
+            </>
+
+            :
+            <>
+              <section className={`title-preview ${montserrat.className}`}>
+                <span>{questionForm.title}</span>
+                {questionForm.course ? (
+                  <SelectedItem title={questionForm.course} canRemoveItem={false} removeItem={handleRemoveCourseItem} />
+                ) :
+                  null
+                }
+              </section>
+              <section className="content-preview">
+                <Markdown className="markdown-body">{questionForm.content}</Markdown>
+              </section>
+            </>
+          }
+
         </div>
       </main>
     </>
