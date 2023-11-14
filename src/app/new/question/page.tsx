@@ -13,9 +13,11 @@ import moreIcons from "@/assets/icons/More.png"
 
 import { montserrat } from "@/utils/fonts/font"
 
-import SelectedItem from "@/components/atoms/NewPostCourse/NewPostCourse"
+import SelectedItem from "@/components/atoms/NewPostItem/NewPostItem"
 import CourseSelector from "@/components/organisms/CourseSelector/CourseSelector"
 import { removeFromArray } from "@/utils/functions/removeFromArray"
+import Link from "next/link"
+import TagSelector from "@/components/organisms/TagSelector/TagSelector"
 
 type questionFormType = {
   title: string,
@@ -34,9 +36,7 @@ const NewQuestion = () => {
     isDraft: true
   })
 
-  const [isPopoverVisible, setPopoverVisible] = useState(false)
   const [isPreviewing, setPreviewing] = useState(true)
-  const coursesPopoverRef = useRef<HTMLDivElement | null>(null);
   const titleTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
   function handleRemoveCourseItem() {
@@ -47,6 +47,18 @@ const NewQuestion = () => {
     const newTags = removeFromArray(currentTags, tagTitle)
 
     setQuestionForm({ ...questionForm, tags: newTags })
+  }
+  function handleAddTagItem(tagTitle: string) {
+    const newTags = questionForm.tags
+    newTags.unshift(tagTitle)
+
+    console.log(questionForm.tags.length)
+    console.log(questionForm.tags)
+
+    setQuestionForm({
+      ...questionForm,
+      tags: newTags
+    })
   }
 
   function handleAddCouseItem(course: string) {
@@ -61,25 +73,12 @@ const NewQuestion = () => {
     }
   }
 
-  // UseEffect do POPOPVER
-  useEffect(() => {
-    function handleOutsideClick(event: MouseEvent) {
-      if (coursesPopoverRef.current && !coursesPopoverRef.current.contains(event.target as Node)) {
-        setPopoverVisible(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
-
   return (
     <>
       <header>
-        <Image src="/assets/icon-colored.svg" width={72} height={40} alt='Stuuky' />
+        <Link href="/home" >
+          <Image src="/assets/icon-colored.svg" width={72} height={40} alt='Stuuky' />
+        </Link>
         <div className="page-title-container">
           <h3 className={montserrat.className}>Criar Questão</h3>
         </div>
@@ -119,9 +118,13 @@ const NewQuestion = () => {
                     )
                   }
                   {questionForm.tags.map((tag) => {
-                    return <SelectedItem title={tag} removeItem={handleRemoveTagItem} key={tag} />
+                    return tag ? <SelectedItem title={tag} removeItem={handleRemoveTagItem} key={tag} /> : null
                   })
-
+                  }
+                  {
+                    questionForm.tags.length < 3 ? (
+                      <TagSelector addItem={handleAddTagItem} />
+                    ) : null
                   }
                 </div>
               </section>
@@ -130,7 +133,7 @@ const NewQuestion = () => {
                   <Image src={toolsIcons} height={29} width={376} alt="tools" />
                 </div>
                 <div className="more">
-                  <Image src={moreIcons} height={32} width={32} />
+                  <Image src={moreIcons} height={32} width={32} alt="more" />
                 </div>
               </section>
               <section className="content-section">
