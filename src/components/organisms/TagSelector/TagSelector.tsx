@@ -59,7 +59,7 @@ const TagSelector = ({ addItem }: TagSelectorProps) => {
             <Popover.Title title="Tags" />
 
           }
-          <Popover.TagList tagList={data.allTags} ref={tagPopoverRef} addItem={addTagItemController} />
+          <Popover.TagList tagList={data.tagsList} ref={tagPopoverRef} addItem={addTagItemController} />
         </Popover.Root>
       )}
     </div>
