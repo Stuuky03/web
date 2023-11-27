@@ -1,9 +1,6 @@
 "use client"
 
-import Markdown from "react-markdown"
 import "./style.scss"
-import { useRef, useState } from "react"
-import ProfileImage from "@/components/atoms/ProfileImage/ProfileImage"
 
 import Image from 'next/image'
 
@@ -11,17 +8,22 @@ import notificationIcon from "@/assets/icons/notification-icon.png"
 import toolsIcons from "@/assets/icons/Tools.png"
 import moreIcons from "@/assets/icons/More.png"
 
-import { montserrat } from "@/utils/fonts/font"
-
-import SelectedItem from "@/components/atoms/NewPostItem/NewPostItem"
-import CourseSelector from "@/components/organisms/CourseSelector/CourseSelector"
-import { removeFromArray } from "@/utils/functions/removeFromArray"
-import Link from "next/link"
-import TagSelector from "@/components/organisms/TagSelector/TagSelector"
 import Button from "@/components/atoms/Button/Button"
-import { useForm } from "react-hook-form"
-import { useMutation } from "@apollo/client"
+import ProfileImage from "@/components/atoms/ProfileImage/ProfileImage"
+import CourseSelector from "@/components/organisms/CourseSelector/CourseSelector"
+import TagSelector from "@/components/organisms/TagSelector/TagSelector"
+import SelectedItem from "@/components/atoms/NewPostItem/NewPostItem"
 import { gqlCreateQuestion } from "@/graphql/mutations/createQuestion"
+import { montserrat } from "@/utils/fonts/font"
+import { removeFromArray } from "@/utils/functions/removeFromArray"
+import { useMutation } from "@apollo/client"
+import Link from "next/link"
+import { useState, useRef } from "react"
+import { useForm } from "react-hook-form"
+import Markdown from "react-markdown"
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr"
+import { gqlGetQuestionById } from "@/graphql/queries/getQuestionById"
+import { gqlCreateStuuke } from "@/graphql/mutations/createStuuke"
 import { useRouter } from "next/navigation"
 
 type questionFormType = {
@@ -32,9 +34,11 @@ type questionFormType = {
   isDraft: boolean,
   createdAt: string,
   studentId: string
+  questionId: string
 }
 
-const NewQuestion = () => {
+type params = { params: { questionId: string } }
+export default function Page({ params: { questionId } }: params) {
   const router = useRouter()
 
   const [questionForm, setQuestionForm] = useState<questionFormType>({
@@ -44,14 +48,15 @@ const NewQuestion = () => {
     content: "",
     isDraft: false,
     createdAt: "2023-12-03T10:15:30.000Z",
-    studentId: "rqw5uert2w111tfivjilwbsp"
+    studentId: "rqw5uert2w111tfivjilwbsp",
+    questionId: questionId
   })
 
   const { handleSubmit } = useForm<questionFormType>({
     mode: 'onSubmit',
   })
 
-  const [createQuestion] = useMutation(gqlCreateQuestion)
+  const [createStuuke] = useMutation(gqlCreateStuuke)
 
   const [isPreviewing, setPreviewing] = useState(true)
   const titleTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -82,6 +87,17 @@ const NewQuestion = () => {
     setQuestionForm({ ...questionForm, courseId })
   }
 
+  const { data } = useSuspenseQuery(gqlGetQuestionById, {
+    variables: { questionId }
+  })
+
+  if (data == null || data.questionById == null) return null
+
+
+  questionForm.tags = data.questionById.tags.map((tag) => tag.title)
+  questionForm.courseId = data.questionById.course.title
+
+
   function changeTitleTextAreaHeight() {
     if (titleTextAreaRef.current) {
       titleTextAreaRef.current.style.maxHeight = "42px"
@@ -91,13 +107,13 @@ const NewQuestion = () => {
   }
 
   async function onSubmitForm() {
-    createQuestion({
+    createStuuke({
       variables: {
         input: questionForm
       }
     })
 
-    router.push(`/home`)
+    router.push(`/question/${questionId}`)
   }
 
   return (
@@ -107,7 +123,7 @@ const NewQuestion = () => {
           <Image src="/assets/icon-colored.svg" width={72} height={40} alt='Stuuky' />
         </Link>
         <div className="page-title-container">
-          <h3 className={montserrat.className}>Criar Questão</h3>
+          <h3 className={montserrat.className}>Criar Stuuke</h3>
         </div>
         <div className='icons-container'>
           <Image src={notificationIcon} width={24} height={24} alt='Notification' />
@@ -130,7 +146,7 @@ const NewQuestion = () => {
                     <textarea
                       ref={titleTextAreaRef}
                       className={`title-input ${montserrat.className}`}
-                      placeholder="Título da pergunta aqui..."
+                      placeholder="Título do stuuke aqui..."
                       onInput={changeTitleTextAreaHeight}
                       onChange={event => setQuestionForm({
                         ...questionForm,
@@ -141,7 +157,7 @@ const NewQuestion = () => {
                   </div>
                   <div className="bottom-container">
                     {questionForm.courseId ? (
-                      <SelectedItem title={questionForm.courseId} removeItem={handleRemoveCourseItem} />
+                      <SelectedItem title={questionForm.courseId} canRemoveItem={false} removeItem={handleRemoveCourseItem} />
                     ) :
                       (
                         <CourseSelector addItem={handleAddCouseItem} questionCourse={questionForm.courseId} />
@@ -149,7 +165,7 @@ const NewQuestion = () => {
                     }
                     <div className="tag-list-items">
                       {questionForm.tags.map((tag) => {
-                        return tag ? <SelectedItem title={tag} removeItem={handleRemoveTagItem} key={tag} /> : null
+                        return tag ? <SelectedItem title={tag} canRemoveItem={false} removeItem={handleRemoveTagItem} key={tag} /> : null
                       })
                       }
                       {
@@ -169,7 +185,7 @@ const NewQuestion = () => {
                   </div>
                 </section>
                 <section className="content-section">
-                  <textarea className="content-input" placeholder="Escreva aqui sua pergunta..." value={questionForm.content} onChange={event => setQuestionForm(
+                  <textarea className="content-input" placeholder="Escreva aqui seu stuuke..." value={questionForm.content} onChange={event => setQuestionForm(
                     {
                       ...questionForm,
                       content: event.target.value
@@ -205,12 +221,10 @@ const NewQuestion = () => {
 
           </div>
           <div className="last-section">
-            <Button name="Submit" value="Publicar pergunta" />
+            <Button name="Submit" value="Publicar stuuke" />
           </div>
         </form>
       </main>
     </>
   )
 }
-
-export default NewQuestion

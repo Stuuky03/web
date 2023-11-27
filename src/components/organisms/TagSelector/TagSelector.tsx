@@ -3,6 +3,7 @@ import gqlGetTagList from "@/graphql/queries/getTagList";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { useState, useRef, useEffect } from "react";
 
+
 type TagSelectorProps = {
   addItem: (tag: string) => void
 }

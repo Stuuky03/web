@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n  mutation CreateQuestion($input: CreateQuestionInput!) {\n    createQuestion(data: $input) {\n        id\n        title\n        content\n        isDraft\n        createdAt\n        studentId\n        courseId\n    }\n  }\n": types.CreateQuestionDocument,
+    "\nmutation CreateStuuke($input: CreateStuukeInput!) {\n  createStuuke(data: $input) {\n      id\n      title\n      content\n      isDraft\n      createdAt\n      studentId\n      questionId\n      courseId\n  }\n}\n": types.CreateStuukeDocument,
     "\n  query AllCourses($courseTitle: String) {\n    allCourses(searchString: $courseTitle) {\n        title\n        id\n    }\n}\n": types.AllCoursesDocument,
     "\nquery QuestionFeed {\n  questionFeed {\n      id\n      title\n      content\n      isDraft\n      createdAt\n      studentId\n      courseId\n      course {\n          title\n      }\n      tags {\n          title\n      }\n      student {\n          username\n          firstName\n          lastName\n      }\n  }\n}\n": types.QuestionFeedDocument,
     "\nquery StuukeFeed {\n    stuukeFeed {\n        id\n      title\n      content\n      isDraft\n      createdAt\n      studentId\n      courseId\n      course {\n          title\n      }\n      tags {\n          title\n      }\n      student {\n          username\n          firstName\n          lastName\n      }\n    }\n}\n": types.StuukeFeedDocument,
@@ -34,6 +36,14 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreateQuestion($input: CreateQuestionInput!) {\n    createQuestion(data: $input) {\n        id\n        title\n        content\n        isDraft\n        createdAt\n        studentId\n        courseId\n    }\n  }\n"): (typeof documents)["\n  mutation CreateQuestion($input: CreateQuestionInput!) {\n    createQuestion(data: $input) {\n        id\n        title\n        content\n        isDraft\n        createdAt\n        studentId\n        courseId\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\nmutation CreateStuuke($input: CreateStuukeInput!) {\n  createStuuke(data: $input) {\n      id\n      title\n      content\n      isDraft\n      createdAt\n      studentId\n      questionId\n      courseId\n  }\n}\n"): (typeof documents)["\nmutation CreateStuuke($input: CreateStuukeInput!) {\n  createStuuke(data: $input) {\n      id\n      title\n      content\n      isDraft\n      createdAt\n      studentId\n      questionId\n      courseId\n  }\n}\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

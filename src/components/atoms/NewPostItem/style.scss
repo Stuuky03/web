@@ -1,5 +1,5 @@
 .selected-course-container {
-  width: fit-content;
+  width: min-content;
   padding: .375rem 1rem;
   background-color: #24293D;
   border-radius: 8px;
@@ -11,6 +11,7 @@
     font-size: 1rem;
     font-weight: 500;
     text-transform: capitalize;
+    text-wrap: nowrap;
   }
 
   button {

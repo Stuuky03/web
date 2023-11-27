@@ -6,7 +6,7 @@ type PostRootProps = {
 }
 const PostRoot = ({ children }: PostRootProps) => {
   return (
-    <div className='post' >
+    <div className='post'>
       {children}
     </div >
   )

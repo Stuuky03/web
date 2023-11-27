@@ -27,7 +27,7 @@ const PopoverTagList = forwardRef<HTMLDivElement, PopoverTagListProps>(
           tagList?.map((tag) => {
             return (
               // TODO: Find a way to make course unable to be "null or undefined"
-              <div className="popover-item" key={tag?.id} onClick={() => addItem(tag?.title)}>
+              <div className="popover-item" key={tag?.id} onClick={() => addItem(tag.title)}>
                 <h5>{tag?.title}</h5>
               </div>
             )

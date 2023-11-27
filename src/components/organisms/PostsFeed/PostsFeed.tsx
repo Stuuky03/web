@@ -22,7 +22,7 @@ const PostsFeed = ({ type }: PostsFeed) => {
             <Post.Info username={username} firstName={firstName} lastName={lastName} />
             <Post.Content title={title} content={content} type="QUESTION" />
             <Post.Tags course={course.title} tags={tags} >
-              <Post.Button />
+              <Post.Button questionId={id} />
             </Post.Tags>
           </Post.Root>
         </Link>

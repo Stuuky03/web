@@ -95,13 +95,15 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-top: .5rem;
 
     .tags-container {
       display: flex;
       margin-left: 40px;
       gap: 0.875rem;
+      flex-wrap: wrap;
+      align-self: center;
 
       .tag {
         display: flex;
@@ -117,6 +119,9 @@
         font-weight: 500;
         line-height: normal;
         cursor: pointer;
+
+        text-wrap: nowrap;
+        
 
         &:hover {
           background-color: #4a516d;

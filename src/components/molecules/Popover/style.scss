@@ -16,13 +16,16 @@
   }
 
   .popover-list {
+    max-height: 300px;
+    overflow-y: auto;
+
     .popover-item {
       padding: 1rem 1rem;
       border-radius: 8px;
 
       h5 {
         font-size: .875rem;
-        font-weight: 500;
+        font-weight: 400;
       }
 
       &:not(.error):hover {

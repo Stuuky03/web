@@ -18,6 +18,11 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
+export type AuthPayload = {
+  __typename?: 'AuthPayload';
+  token: Scalars['String']['output'];
+};
+
 export type Course = {
   __typename?: 'Course';
   description: Scalars['String']['output'];
@@ -35,9 +40,30 @@ export type CreateQuestionInput = {
   title: Scalars['String']['input'];
 };
 
+export type CreateStudentInput = {
+  email: Scalars['String']['input'];
+  firstName: Scalars['String']['input'];
+  lastName: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
+};
+
+export type CreateStuukeInput = {
+  content: Scalars['String']['input'];
+  courseId: Scalars['String']['input'];
+  createdAt: Scalars['DateTime']['input'];
+  isDraft: Scalars['Boolean']['input'];
+  questionId: Scalars['String']['input'];
+  studentId: Scalars['String']['input'];
+  tags: Array<Scalars['String']['input']>;
+  title: Scalars['String']['input'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createQuestion?: Maybe<Question>;
+  createStuuke?: Maybe<Stuuke>;
+  signinStudent?: Maybe<Student>;
   signupStudent?: Maybe<Student>;
 };
 
@@ -47,8 +73,18 @@ export type MutationCreateQuestionArgs = {
 };
 
 
+export type MutationCreateStuukeArgs = {
+  data: CreateStuukeInput;
+};
+
+
+export type MutationSigninStudentArgs = {
+  data: SignInStudentInput;
+};
+
+
 export type MutationSignupStudentArgs = {
-  data: UserCreateInput;
+  data: CreateStudentInput;
 };
 
 export type Query = {
@@ -100,6 +136,11 @@ export type Reference = {
   url: Scalars['String']['output'];
 };
 
+export type SignInStudentInput = {
+  emailOrUsername: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
 export type Student = {
   __typename?: 'Student';
   courses: Array<Maybe<Course>>;
@@ -139,13 +180,19 @@ export type Tag = {
   title: Scalars['String']['output'];
 };
 
-export type UserCreateInput = {
-  email: Scalars['String']['input'];
-  firstName: Scalars['String']['input'];
-  lastName: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  username: Scalars['String']['input'];
-};
+export type CreateQuestionMutationVariables = Exact<{
+  input: CreateQuestionInput;
+}>;
+
+
+export type CreateQuestionMutation = { __typename?: 'Mutation', createQuestion?: { __typename?: 'Question', id: string, title: string, content: string, isDraft: boolean, createdAt: any, studentId: string, courseId: string } | null };
+
+export type CreateStuukeMutationVariables = Exact<{
+  input: CreateStuukeInput;
+}>;
+
+
+export type CreateStuukeMutation = { __typename?: 'Mutation', createStuuke?: { __typename?: 'Stuuke', id: string, title: string, content: string, isDraft: boolean, createdAt: any, studentId: string, questionId: string, courseId: string } | null };
 
 export type AllCoursesQueryVariables = Exact<{
   courseTitle?: InputMaybe<Scalars['String']['input']>;
@@ -179,6 +226,8 @@ export type TagsListQueryVariables = Exact<{
 export type TagsListQuery = { __typename?: 'Query', tagsList: Array<{ __typename?: 'Tag', id: string, title: string } | null> };
 
 
+export const CreateQuestionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateQuestion"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateQuestionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createQuestion"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"isDraft"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"studentId"}},{"kind":"Field","name":{"kind":"Name","value":"courseId"}}]}}]}}]} as unknown as DocumentNode<CreateQuestionMutation, CreateQuestionMutationVariables>;
+export const CreateStuukeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateStuuke"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateStuukeInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createStuuke"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"isDraft"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"studentId"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"courseId"}}]}}]}}]} as unknown as DocumentNode<CreateStuukeMutation, CreateStuukeMutationVariables>;
 export const AllCoursesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllCourses"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"courseTitle"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allCourses"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"searchString"},"value":{"kind":"Variable","name":{"kind":"Name","value":"courseTitle"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<AllCoursesQuery, AllCoursesQueryVariables>;
 export const QuestionFeedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"QuestionFeed"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"questionFeed"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"isDraft"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"studentId"}},{"kind":"Field","name":{"kind":"Name","value":"courseId"}},{"kind":"Field","name":{"kind":"Name","value":"course"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"student"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]} as unknown as DocumentNode<QuestionFeedQuery, QuestionFeedQueryVariables>;
 export const StuukeFeedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"StuukeFeed"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"stuukeFeed"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"isDraft"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"studentId"}},{"kind":"Field","name":{"kind":"Name","value":"courseId"}},{"kind":"Field","name":{"kind":"Name","value":"course"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"student"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]}}]} as unknown as DocumentNode<StuukeFeedQuery, StuukeFeedQueryVariables>;
